@@ -9,15 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var http_1 = require('@angular/http');
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(http) {
+        var _this = this;
+        this.http = http;
+        this.http.get('http://localhost:3000/api')
+            .subscribe(function (data) { return _this.message = data.json().some; }, function (err) { return console.log(err); });
     }
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: '<h1>My First Angular 2 App</h1>'
+            template: '<h1>My First Angular 2 App</h1> {{ message }}',
+            providers: [http_1.HTTP_PROVIDERS]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [http_1.Http])
     ], AppComponent);
     return AppComponent;
 }());
